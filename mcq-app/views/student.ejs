@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .card {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+    .question-item {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+    .question-text {
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .options {
+      margin-bottom: 15px;
+    }
+    .option-item {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .home-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .no-questions {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Dashboard</h1>
+    
+    <div class="card">
+      <h2>Available Questions</h2>
+      <% if(questions.length > 0) { %>
+        <% questions.forEach((question, qIndex) => { %>
+          <div class="question-item">
+            <div class="question-text"><%= qIndex + 1 %>. <%= question.question %></div>
+            <div class="options">
+              <% question.options.forEach((option, index) => { %>
+                <label class="option-item">
+                  <input type="checkbox" name="question<%= qIndex %>" value="<%= index %>">
+                  <%= option %>
+                </label>
+              <% }) %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="no-questions">No questions available at the moment.</p>
+      <% } %>
+    </div>
+    
+    <a href="/" class="home-link">Back to Home</a>
+  </div>
+</body>
+</html>
